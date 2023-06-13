@@ -3,6 +3,7 @@ const fs = require('fs')
 const path = require('path')
 
 const WRITE_PATH = process.env.WRITE_PATH
+console.log("Write path", WRITE_PATH)
 
 const getCurrentDateTime = () => {
   var date = new Date();
@@ -21,6 +22,7 @@ const getCurrentDateTime = () => {
 
 const writeFile = () => {
   const fileName = getCurrentDateTime() + '.txt'
+  console.log(fileName)
   fs.writeFileSync(path.join(WRITE_PATH, fileName), new Date().toString())
 }
 

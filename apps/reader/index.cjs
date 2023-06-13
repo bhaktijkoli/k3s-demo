@@ -3,12 +3,14 @@ const fs = require('fs')
 const path = require('path')
 
 const READ_PATH = process.env.READ_PATH
+console.log("Read path", READ_PATH)
 
-const readFiles = (path = READ_PATH) => {
-  const files = fs.readdirSync(path)
+const readFiles = (dirPath = READ_PATH) => {
+  const files = fs.readdirSync(dirPath)
   for (const file of files) {
-    if (file.isDirectory()) {
-      readFiles(path.join(path, file))
+    const stat = fs.statSync(path.join(dirPath, file.toString()));
+    if (stat.isDirectory()) {
+      readFiles(path.join(dirPath, file.toString()))
     } else {
       console.log(file)
     }
