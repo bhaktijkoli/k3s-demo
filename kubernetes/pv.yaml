@@ -1,0 +1,51 @@
+---
+apiVersion: v1
+kind: PersistentVolume
+metadata:
+  name: reader-pv
+  labels:
+    app: k3s-demo
+spec:
+  capacity:
+    storage: 100Mi
+  volumeMode: Filesystem
+  storageClassName: local-path
+  accessModes:
+    - ReadWriteOnce
+  hostPath:
+    path: /home/koireader/data
+    type: DirectoryOrCreate
+---
+apiVersion: v1
+kind: PersistentVolume
+metadata:
+  name: writer-1-pv
+  labels:
+    app: k3s-demo
+spec:
+  capacity:
+    storage: 50Mi
+  volumeMode: Filesystem
+  storageClassName: local-path
+  accessModes:
+    - ReadWriteOnce
+  hostPath:
+    path: /home/koireader/data/r1
+    type: DirectoryOrCreate
+---
+apiVersion: v1
+kind: PersistentVolume
+metadata:
+  name: writer-2-pv
+  labels:
+    app: k3s-demo
+spec:
+  capacity:
+    storage: 50Mi
+  volumeMode: Filesystem
+  storageClassName: local-path
+  accessModes:
+    - ReadWriteOnce
+  hostPath:
+    path: /home/koireader/data/r2
+    type: DirectoryOrCreate
